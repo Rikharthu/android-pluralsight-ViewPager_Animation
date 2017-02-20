@@ -1,7 +1,9 @@
 package viewpageranim.sriyank.com.viewpageranimation;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.RelativeLayout;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
+    private static final String LOG_TAG = ViewPagerAdapter.class.getSimpleName();
     private Context mContext;
 
     private int[] mImageId;
@@ -57,9 +60,19 @@ public class ViewPagerAdapter extends PagerAdapter {
         imageFashion.setImageResource(mImageId[position]);
 
         itemView.setTag("#"+position);
-
+        if(position==1){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                itemView.setTranslationZ(1f);
+            }
+        }
         // Add viewpager_item.xml to ViewPager
         container.addView(itemView);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w(LOG_TAG,view.getTag().toString());
+            }
+        });
 
         return itemView;
     }

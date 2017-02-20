@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import viewpageranim.sriyank.com.transformers.DepthPage;
 import viewpageranim.sriyank.com.transformers.Rotation;
+import viewpageranim.sriyank.com.transformers.UberTransformer;
 import viewpageranim.sriyank.com.transformers.ZoomOut;
 
 
@@ -24,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mImageId = new int[]{
-                R.drawable.image_1, R.drawable.image_2,
-                R.drawable.image_3, R.drawable.image_4, R.drawable.image_5};
+                R.drawable.image_1, R.drawable.image_2};
 
         // Locate the ViewPager in activity_main.xml
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
                 mViewPager.setPageTransformer(true, new Rotation());
             break;
+            case R.id.uber_page:
+                mViewPager.setPageTransformer(true,new UberTransformer());
+                mViewPager.setCurrentItem(1);
         }
 
         return super.onOptionsItemSelected(item);
